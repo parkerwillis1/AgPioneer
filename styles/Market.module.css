@@ -1,0 +1,38 @@
+.header {
+    background-color: #0b530b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin: 0 auto; /* Centers block elements */
+    display: block; /* To ensure it's a block element */
+}
+
+.container {
+    color: white;
+}
+
+.filterBar {
+    background-color: #e5e5e5;
+    padding: 10px;
+    text-align: center;
+    color: white; /* Set text color to white */
+}
+
+.graphSection {
+    padding: 20px;
+    color: white; /* Set text color to white */
+}
+
+.detailedForecast {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    color: white; /* Set text color to white */
+}
+
+.footer {
+    background-color: #0b530b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}

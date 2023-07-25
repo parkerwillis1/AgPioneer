@@ -1,0 +1,115 @@
+/* General and Layout Styles */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh; /* 70% of the viewport height */
+  background: white,
+              url('/path_to_hero_image.jpg') center/cover no-repeat;
+  color: rgb(90, 90, 90);
+  text-align: center;
+  padding: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+/* Market Prediction Section */
+.marketPrediction {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 50px;
+  background-color: #f4f4f4;
+  transition: transform 0.3s ease;
+}
+
+.marketPrediction:hover {
+  transform: scale(1.02);
+}
+
+/* Weather Forecasting Section */
+.weatherForecasting {
+  display: flex;
+  flex-wrap: wrap-reverse; /* Reverse for alternate layout on smaller screens */
+  gap: 20px;
+  padding: 50px;
+  background-color: #e6e6e6;
+  transition: transform 0.3s ease;
+}
+
+.weatherForecasting:hover {
+  transform: scale(1.02);
+}
+
+/* Testimonials Section */
+.testimonials {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+  background-color: #d9d9d9;
+  text-align: center;
+}
+
+.mainContent {
+  background-color: white;
+  color: rgb(90, 90, 90);
+  width: 100%;
+  min-height: 100vh; /* This will ensure the background color covers the entire viewport height */
+}
+
+
+/* Navbar & Footer */
+.navbar, .footer {
+  background-color: darkgreen;
+  color: white; /* Setting text color to white for contrast */
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+  .marketPrediction, .weatherForecasting {
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
+/* Interactive Effects & Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.hero h1, .hero h2, .hero p {
+  animation: fadeIn 1s ease forwards;
+}
+
+.marketPrediction h2, .marketPrediction p,
+.weatherForecasting h2, .weatherForecasting p {
+    animation: fadeIn 1s ease forwards;
+}
+
+
+.marketPrediction img, .weatherForecasting img {
+  border-radius: var(--border-radius);
+  transition: box-shadow 0.3s ease;
+}
+
+.marketPrediction img:hover, .weatherForecasting img:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
