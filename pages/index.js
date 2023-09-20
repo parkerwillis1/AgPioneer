@@ -9,6 +9,7 @@ export default function Home() {
 
             {/* Hero Section */}
             <section className={styles.hero}>
+                
                 <h1>Welcome to the Farm Prediction App</h1>
                 <p>Empowering farmers with cutting-edge predictions.</p>
             </section>

@@ -7,27 +7,74 @@
     display: block; /* To ensure it's a block element */
 }
 
-.container {
-    color: white;
-}
-
 .filterBar {
     background-color: #e5e5e5;
     padding: 10px;
     text-align: center;
-    color: white; /* Set text color to white */
+}
+
+.searchInput, .categoryDropdown {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.productsList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.productGraph {
+    height: 200px;
+    background: #f4f4f4;
+}
+
+.error {
+    color: red;
+    padding: 10px;
+    border: 1px solid red;
+    margin-top: 20px;
+}
+
+.feedbackSection {
+    margin-top: 50px;
+}
+
+.feedbackTextarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.feedbackSubmit {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .graphSection {
     padding: 20px;
-    color: white; /* Set text color to white */
 }
 
 .detailedForecast {
     background-color: #f9f9f9;
     padding: 20px;
     margin-top: 20px;
-    color: white; /* Set text color to white */
 }
 
 .footer {

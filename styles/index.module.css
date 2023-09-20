@@ -9,27 +9,30 @@
 
 /* Hero Section */
 .hero {
+  background-image: url('/images/long1.jpeg'); /* Pointing to the image in the public/images directory */
+  background-size: cover;  
+  background-position: center;  
+  background-repeat: no-repeat;  
+  height: 100vh;  
+  font-size: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 70vh; /* 70% of the viewport height */
-  background: white,
-              url('/path_to_hero_image.jpg') center/cover no-repeat;
-  color: rgb(90, 90, 90);
-  text-align: center;
-  padding: 50px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease;
+  align-items: center;
+  color: white; /* Adjust text color if needed */
+  padding: 20px; /* Optional: To give some spacing */
 }
+
 
 /* Market Prediction Section */
 .marketPrediction {
+
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   padding: 50px;
-  background-color: #f4f4f4;
+  color: #ffffff;
+  background-color: #0b530b;
   transition: transform 0.3s ease;
 }
 
@@ -43,7 +46,8 @@
   flex-wrap: wrap-reverse; /* Reverse for alternate layout on smaller screens */
   gap: 20px;
   padding: 50px;
-  background-color: #e6e6e6;
+  color: #ffffff;
+  background-color: #0b530b;
   transition: transform 0.3s ease;
 }
 

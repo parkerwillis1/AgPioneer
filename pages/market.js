@@ -1,57 +1,57 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import styles from '../styles/Market.module.css';
 import MarketChart from '../components/MarketChart';
-import styles from '../styles/Market.module.css'; 
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
 
 export default function Market() {
-    // Sample data for the chart. You'd replace this with your actual data.
-    const chartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-        datasets: [
-            {
-                label: 'Historical Prices', // <-- This label will appear in the tooltip for the first dataset
-                data: [12, 19, 3, 5, 2, 3],
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            {
-                label: 'Predicted Prices', // <-- This label will appear in the tooltip for the second dataset
-                data: [14, 20, 4, 6, 3, 4],
-                fill: false,
-                borderColor: 'rgb(255, 99, 132)',
-                tension: 0.1
-            }
-        ]
-    };
+    const [products, setProducts] = useState(['Cotton', 'Wheat', 'Corn']); // Add or remove products as needed
+    const [selectedProduct, setSelectedProduct] = useState("Cotton");
+    const [usdaData, setUsdaData] = useState(null);
 
-    const chartOptions = {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        },
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top'
-            },
-            tooltip: {
-                enabled: true,
-                mode: 'index',
-                intersect: false,
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get(`/api/usdaData?product=${selectedProduct}`);
+                if (response.data) {
+                    setUsdaData(response.data);
+                }
+            } catch (error) {
+                console.error("Error fetching USDA data:", error);
             }
         }
-    };
+
+        fetchData();
+    }, [selectedProduct]);
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.header}>Market Predictions</h1>
+            <header className={styles.header}>
+                <h1>Market Predictions</h1>
+            </header>
 
-            {/* Graph Section */}
-            <section className={styles.graphSection}>
-                <MarketChart data={chartData} options={chartOptions} />
+            <section className={styles.filterBar}>
+                <label htmlFor="productSelect">Choose a product:</label>
+                <select 
+                    id="productSelect" 
+                    value={selectedProduct} 
+                    onChange={(e) => setSelectedProduct(e.target.value)}
+                >
+                    {products.map(product => (
+                        <option key={product} value={product}>{product}</option>
+                    ))}
+                </select>
             </section>
 
-            {/* Additional sections/components can go here */}
+            <section className={styles.graphSection}>
+                <MarketChart data={usdaData} />
+            </section>
+
+            <footer className={styles.footer}>
+                Footer Content Here
+            </footer>
         </div>
     );
 }

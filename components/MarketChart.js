@@ -1,43 +1,38 @@
+import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { Chart } from 'chart.js';
-import { CategoryScale, LinearScale, PointElement, LineElement, Tooltip } from 'chart.js';
 
-// Register the necessary Chart.js components and plugins
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
+export default function MarketChart({ data: usdaData }) {  
+    // Initial checks to handle null or undefined data.
+    if (!usdaData || !usdaData.dataset || !usdaData.dataset.data) {
+        return <p>Loading data...</p>;
+    }
 
-function MarketChart({ data, options }) {
-    const improvedOptions = {
-        // Ensure the legend is displayed
-        plugins: {
-            legend: {
-                display: true,
-                position: 'top'
-            },
-            tooltip: { // Ensure tooltips are enabled
-                enabled: true,
-                mode: 'index',
-                intersect: false
-            }
-        },
-        // Make the scales more user-friendly
-        scales: {
-            y: {
-                beginAtZero: true,
-                ticks: {
-                    callback: function(value, index, values) {
-                        return '$' + value; // Display dollar sign before y-axis values
-                    }
-                }
-            }
-        },
-        ...options // Merge with any other options passed in
+    console.log(usdaData);
+    if (usdaData.dataset) {
+        console.log("First data object:", usdaData.dataset.data[0]);
+    }
+
+    const labels = usdaData.dataset.data.map(entry => entry[0]);  // extract dates
+    const dataValues = usdaData.dataset.data.map(entry => entry[1]);  // extract values
+
+    const chartData = {
+        labels: labels,
+        datasets: [{
+            label: `${usdaData.dataset.dataset_code} Prices`,  // Name of the product
+            data: dataValues,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
     };
 
     return (
-        <div style={{ width: '80%', height: '1000px', margin: '0 auto' }}> 
-            <Line data={data} options={improvedOptions} />
+        <div>
+            {chartData ? (
+                <Line data={chartData} />
+            ) : (
+                <p>Data not available.</p>
+            )}
         </div>
     );
 }
-
-export default MarketChart;
